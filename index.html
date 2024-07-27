@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Modern PWA Weather Application" />
+    <link rel="apple-touch-icon" href="logo.png" />
+    <link rel="manifest" href="manifest.json" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="main-container">
+      <input type="text" class="search" placeholder="Search..." id="search-input" />
+      <div id="weather-info" class="city" style="display: none;">
+        <h2 class="city-name">
+          <span id="city-name"></span>
+          <sup id="city-country"></sup>
+        </h2>
+        <div class="city-temp">
+          <span id="city-temp"></span>
+          <sup>&deg;C</sup>
+        </div>
+        <div class="info">
+          <img class="city-icon" id="city-icon" alt="" />
+          <p id="city-description"></p>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        if('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('serviceworker.js')
+                    .then((reg) => console.log('Success: ', reg.scope))
+                    .catch((err) => console.log('Failure: ', err));
+            });
+        }
+    </script>
+  </body>
+</html>
