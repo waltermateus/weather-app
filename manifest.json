@@ -1,12 +1,12 @@
 {
+    "name": "Pagoda",
+    "short_name": "Pagoda",
+    "description": "1.0",
     "theme_color": "#000000",
     "background_color": "#ffffff",
     "display": "standalone",
     "scope": "/weather-app/",
-    "start_url": "/weather-app/",
-    "name": "Pagoda",
-    "short_name": "Pagoda",
-    "description": "1.0",
+    "start_url": "/weather-app/index.html",
     "icons": [
         {
             "src": "icon-192x192.png",
