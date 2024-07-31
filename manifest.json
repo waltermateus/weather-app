@@ -6,7 +6,7 @@
     "background_color": "#ffffff",
     "display": "standalone",
     "scope": "/weather-app/",
-    "start_url": "/weather-app/",
+    "start_url": "/weather-app/index.html",
     "icons": [
         {
             "src": "icon-192x192.png",
