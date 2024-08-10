@@ -1,47 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <link rel="icon" type="image/png" href="logo.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Modern PWA Weather Application" />
-  <link rel="apple-touch-icon" href="logo.png" />
-  <link rel="manifest" href="manifest.json" />
-  <title>Weather App</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.min.css">
+    <script src="js/main.js" type="module"></script>
 </head>
 <body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div class="main-container">
-    <input type="text" class="search" placeholder="Search..." id="search-input" />
-    <div id="weather-info" class="city" style="display: none;">
-      <h2 class="city-name">
-        <span id="city-name"></span>
-        <sup id="city-country"></sup>
-      </h2>
-      <div class="city-temp">
-        <span id="city-temp"></span>
-        <sup>&deg;C</sup>
-      </div>
-      <div class="info">
-        <img class="city-icon" id="city-icon" alt="" />
-        <p id="city-description"></p>
-        <p id="city-humidity"></p>
-        <p id="city-wind"></p>
-      </div>
-    </div>
-  </div>
-  <script src="script.js"></script>
-  <script>
-    if('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('serviceworker.js')
-          .then((reg) => console.log('Success: ', reg.scope))
-          .catch((err) => console.log('Failure: ', err));
-      });
-    }
-  </script>
+    <main class="fade-in">
+        <h1 class="offscreen">Responsive Weather App Powered by the Open Weather A P I</h1>
+        <section id="searchBar" class="searchBar fade-in">
+            <form id="searchBar__form" class="searchBar__form" role="search">
+                <label for="searchBar__text" class="offscreen">Enter a new location</label>
+                <input id="searchBar__text" class="searchBar__text" type="text" role="searchbox" size="40" autocomplete="off" placeholder="City, State, Country">
+                <button id="searchBar__button" class="searchBar__button button" title="Submit Location" aria-label="Submit Search">
+                    <i class="fa fa-search"></i>
+                    <i class="fas fa-sync fa-spin none"></i>
+                </button>
+            </form>
+        </section>
+        <a href="#currentForecast" class="skip-link">Skip to Current Conditions</a>
+        <section id="currentForecast" class="currentForecast fade-in" role="region" aria-labelledby="currentForecast__location">
+          <h2 id="currentForecast__location" class="currentForecast__location">Current Conditions</h2>
+          <div id="currentForecast__conditions" class="currentForecast__conditions"></div>
+        </section>
+        <a href="#dailyForecast" class="skip-link">Skip to Six Day Forecast</a>
+        <nav id="navButtons" class="navButtons fade-in">
+            <button id="getLocation" class="button" title="Get Location" aria-label="Get the current weather conditions for your current location">
+                <i class="fas fa-map-marker-alt"></i>
+                <i class="fas fa-sync fa-spin none"></i>
+            </button>
+            <button id="home" class="button" title="Home weather" aria-label="Get the current weather conditions for your home location">
+                <i class="fas fa-home"></i>
+                <i class="fas fa-sync fa-spin none"></i>
+            </button>
+            <button id="saveLocation" class="button" title="Save Location" aria-label="Save the current location as your home location">
+                <i class="fas fa-save"></i>
+                <i class="fas fa-sync fa-spin none"></i>
+            </button>
+            <button id="unit" class="button" title="Toggle Measurement Units" aria-label="Toggle between metric and imperial measurement units">
+                <i class="fas fa-chart-bar"></i>
+                <i class="fas fa-sync fa-spin none"></i>
+            </button>
+            <button id="refresh" class="button" title="Refresh Weather" aria-label="Refresh the current weather conditions">
+                <i class="fas fa-sync-alt"></i>
+                <i class="fas fa-sync fa-spin none"></i>
+            </button>
+        </nav>
+        <hr class="fade-in">
+        <section id="dailyForecast" class="dailyForecast fade-in" role="region" aria-labelledby="dailyForecast__title">
+            <h2 id="dailyForecast__title" class="dailyForecast__title offscreen">Six Day Forecast</h2>
+            <div id="dailyForecast__contents" class="dailyForecast__contents"></div>
+        </section>
+        <p id="confirmation" class="offscreen" aria-live="assertive"></p>
+    </main>
 </body>
 </html>
