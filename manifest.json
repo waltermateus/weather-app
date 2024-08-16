@@ -1,7 +1,7 @@
 {
   "id": "/",
   "dir": "ltr",
-  "lang": "en",
+  "lang": "pt",
   "name": "Pagoda",
   "short_name": "Pagoda",
   "description": "1.0",
@@ -16,9 +16,9 @@
     "window-controls-overlay"
   ],
   "features": [
-    "Weather Updates",
-    "Responsive Design",
-    "PWA Support"
+    "Atualizações do Clima",
+    "Design Responsivo",
+    "Suporte PWA"
   ],
   "icons": [
     {
@@ -47,8 +47,8 @@
     }
   ],
   "categories": [
-    "weather",
-    "utility"
+    "clima",
+    "utilitário"
   ],
   "launch_handler": {
     "client_mode": "navigate-existing"
