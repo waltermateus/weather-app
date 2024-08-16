@@ -15,13 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   unitToggle.addEventListener("change", () => {
     const isMetric = unitToggle.checked;
-    // Atualizar a UI para refletir a unidade selecionada (Celsius ou Fahrenheit)
-    // Você pode implementar a lógica aqui para converter as unidades e atualizar a UI
   });
 
   const fetchWeatherData = async (location) => {
     try {
-      const apiKey = "1f0868ad4687f50e1fb0345863ecf1b0"; // Chave de API fornecida
+      const apiKey = "1f0868ad4687f50e1fb0345863ecf1b0";
       const units = unitToggle.checked ? "metric" : "imperial";
       const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${units}&appid=${apiKey}&lang=pt_br`);
       if (!response.ok) {
@@ -60,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
     pressureElement.textContent = `${main.pressure} hPa`;
     weatherImageElement.src = `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
 
-    // Atualizando a classe de dia/noite baseado no ícone
     const isDayTime = weather[0].icon.includes("d");
     if (isDayTime) {
       weatherContainer.classList.add("day-time");
@@ -73,6 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Chamada inicial para pegar o clima padrão
-  fetchWeatherData("São Paulo");
+  // Chamada inicial para pegar o clima padrão de Luanda
+  fetchWeatherData("Luanda");
 });
