@@ -1,65 +1,78 @@
 document.addEventListener("DOMContentLoaded", () => {
   const searchForm = document.querySelector(".search-form");
   const unitToggle = document.querySelector("#unitType");
-  const body = document.querySelector("body");
   const weatherContainer = document.querySelector(".grid-item:first-child");
 
   searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const location = document.querySelector("#search").value;
-    fetchWeatherData(location);
+    if (location) {
+      fetchWeatherData(location);
+    } else {
+      alert("Por favor, insira o nome de uma cidade.");
+    }
   });
 
   unitToggle.addEventListener("change", () => {
     const isMetric = unitToggle.checked;
-    // Atualizar a UI para refletir a unidade selecionada
-    // Você pode incluir a lógica aqui para atualizar a unidade das medições de clima
+    // Atualizar a UI para refletir a unidade selecionada (Celsius ou Fahrenheit)
+    // Você pode implementar a lógica aqui para converter as unidades e atualizar a UI
   });
 
-  const fetchWeatherData = (location) => {
-    // Substitua pela chamada real da API
-    const dummyData = {
-      location: "Cidade Exemplo",
-      temp: "25",
-      unit: "°C",
-      desc: "Ensolarado",
-      high: "28",
-      low: "22",
-      feels_like: "27",
-      humidity: "60%",
-      wind_speed: "5 m/s",
-      pressure: "1015 hPa",
-      icon: "01d",
-      dayTime: true,
-    };
-
-    updateUI(dummyData);
+  const fetchWeatherData = async (location) => {
+    try {
+      const apiKey = "1f0868ad4687f50e1fb0345863ecf1b0"; // Chave de API fornecida
+      const units = unitToggle.checked ? "metric" : "imperial";
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${units}&appid=${apiKey}&lang=pt_br`);
+      if (!response.ok) {
+        throw new Error("Cidade não encontrada");
+      }
+      const data = await response.json();
+      updateUI(data);
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   const updateUI = (data) => {
-    document.querySelector(".location").textContent = data.location;
-    document.querySelector(".temp").textContent = data.temp;
-    document.querySelector(".unit").textContent = data.unit;
-    document.querySelector(".desc").textContent = data.desc;
-    document.querySelector(".max").textContent = `${data.high} ${data.unit}`;
-    document.querySelector(".min").textContent = `${data.low} ${data.unit}`;
-    document.querySelector(".feels-like").textContent = `${data.feels_like} ${data.unit}`;
-    document.querySelector(".humidity").textContent = data.humidity;
-    document.querySelector(".wind-speed").textContent = data.wind_speed;
-    document.querySelector(".pressure").textContent = data.pressure;
-    document.querySelector(".weather-image").src = `https://refinedguides.com/weather-app/img/${data.icon}.png`;
+    const { name, main, weather, wind } = data;
+    const locationElement = document.querySelector(".location");
+    const tempElement = document.querySelector(".temp");
+    const unitElement = document.querySelector(".unit");
+    const descElement = document.querySelector(".desc");
+    const maxElement = document.querySelector(".max");
+    const minElement = document.querySelector(".min");
+    const feelsLikeElement = document.querySelector(".feels-like");
+    const humidityElement = document.querySelector(".humidity");
+    const windSpeedElement = document.querySelector(".wind-speed");
+    const pressureElement = document.querySelector(".pressure");
+    const weatherImageElement = document.querySelector(".weather-image");
 
-    if (data.dayTime) {
+    locationElement.textContent = name;
+    tempElement.textContent = Math.round(main.temp);
+    unitElement.textContent = unitToggle.checked ? "°C" : "°F";
+    descElement.textContent = weather[0].description;
+    maxElement.textContent = `${Math.round(main.temp_max)} ${unitToggle.checked ? "°C" : "°F"}`;
+    minElement.textContent = `${Math.round(main.temp_min)} ${unitToggle.checked ? "°C" : "°F"}`;
+    feelsLikeElement.textContent = `${Math.round(main.feels_like)} ${unitToggle.checked ? "°C" : "°F"}`;
+    humidityElement.textContent = `${main.humidity}%`;
+    windSpeedElement.textContent = `${Math.round(wind.speed)} ${unitToggle.checked ? "m/s" : "milhas/h"}`;
+    pressureElement.textContent = `${main.pressure} hPa`;
+    weatherImageElement.src = `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
+
+    // Atualizando a classe de dia/noite baseado no ícone
+    const isDayTime = weather[0].icon.includes("d");
+    if (isDayTime) {
       weatherContainer.classList.add("day-time");
       weatherContainer.classList.remove("night-time");
-      body.className = "sunny";
+      document.body.className = "sunny";
     } else {
       weatherContainer.classList.add("night-time");
       weatherContainer.classList.remove("day-time");
-      body.className = "night";
+      document.body.className = "night";
     }
   };
 
   // Chamada inicial para pegar o clima padrão
-  fetchWeatherData("Cidade Exemplo");
+  fetchWeatherData("São Paulo");
 });
