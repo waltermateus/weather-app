@@ -1,11 +1,11 @@
-# Weather App
+# Aplicativo de Clima
 
-A simple weather app using the OpenWeatherMap API.
+Um aplicativo simples de clima utilizando a API do OpenWeatherMap.
 
-### Features
+### Funcionalidades
 
-- [x] Search by city, state, or country.
-- [x] Switch between Metric and Imperial units.
-- [x] Dynamic day/night background.
-- [x] Custom weather icons.
-- [x] Geolocation for current weather.
+- [x] Pesquisa por cidade, estado ou país.
+- [x] Alternância entre unidades Métricas e Imperiais.
+- [x] Fundo dinâmico para dia/noite.
+- [x] Ícones de clima personalizados.
+- [x] Geolocalização para clima atual.
