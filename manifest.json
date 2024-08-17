@@ -1,32 +1,82 @@
 {
-    "theme_color": "#000000",
-    "background_color": "#ffffff",
-    "display": "standalone",
-    "scope": "/weather-app/",
-    "start_url": "/weather-app/",
-    "name": "Pagoda",
-    "short_name": "Pagoda",
-    "description": "1.0",
-    "icons": [
+  "id": "/",
+  "dir": "ltr",
+  "lang": "pt",
+  "name": "Pagoda",
+  "scope": "/weather-app/",
+  "display": "standalone",
+  "start_url": "/weather-app/",
+  "short_name": "Pagoda",
+  "theme_color": "#000000",
+  "description": "Um aplicativo simples de clima utilizando a API do OpenWeatherMap!",
+  "orientation": "any",
+  "background_color": "#FFFFFF",
+  "prefer_related_applications": false,
+  "display_override": [
+    "window-controls-overlay"
+  ],
+  "screenshots": [
+    {
+      "src": "screen.png"
+    },
+    {
+      "src": "screen.png"
+    },
+    {
+      "src": "screen.png"
+    }
+  ],
+  "features": [
+    "Cross Platform",
+    "low-latency inking",
+    "fast",
+    "useful AI"
+  ],
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": [
+    "weather"
+  ],
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "edge_side_panel": {},
+  "shortcuts": [
+    {
+      "name": "Start Live Session",
+      "short_name": "Start Live",
+      "description": "Jump direction into starting or joining a live session",
+      "url": "/?startLive",
+      "icons": [
         {
-            "src": "/icon-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "/icon-256x256.png",
-            "sizes": "256x256",
-            "type": "image/png"
-        },
-        {
-            "src": "/icon-384x384.png",
-            "sizes": "384x384",
-            "type": "image/png"
-        },
-        {
-            "src": "/icon-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
+          "src": "icon-256x256.png",
+          "sizes": "256x256"
         }
-    ]
+      ]
+    }
+  ]
 }
