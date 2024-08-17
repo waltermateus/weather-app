@@ -14,7 +14,7 @@ self.addEventListener("message", (event) => {
 self.addEventListener('install', async (event) => {
   event.waitUntil(
     caches.open(CACHE)
-      .then((cache) => cache.add(offlineFallbackPage))
+      .then((cache) => cache.addAll([offlineFallbackPage]))
   );
 });
 
@@ -41,4 +41,28 @@ self.addEventListener('fetch', (event) => {
       }
     })());
   }
+});
+
+// Suporte ao Background Sync
+self.addEventListener('sync', (event) => {
+  if (event.tag === 'sync-weather-data') {
+    event.waitUntil(syncWeatherData());
+  }
+});
+
+async function syncWeatherData() {
+  // Código para sincronizar os dados do clima em segundo plano
+}
+
+// Suporte a Push Notifications
+self.addEventListener('push', (event) => {
+  const data = event.data.json();
+  const options = {
+    body: data.body,
+    icon: 'icon-192x192.png',
+    badge: 'icon-192x192.png'
+  };
+  event.waitUntil(
+    self.registration.showNotification(data.title, options)
+  );
 });
