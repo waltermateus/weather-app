@@ -9,3 +9,5 @@ Um aplicativo simples de clima utilizando a API do OpenWeatherMap.
 - [x] Fundo dinâmico para dia/noite.
 - [x] Ícones de clima personalizados.
 - [x] Geolocalização para clima atual.
+
+https://www.webintoapp.com/store/414443
