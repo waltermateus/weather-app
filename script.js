@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const fetchWeatherData = async (location) => {
     try {
-      const apiKey = "5dcd801d8dd2009e21568d85e8ac6fa7";
+      const apiKey = "1f0868ad4687f50e1fb0345863ecf1b0";
       const units = unitToggle.checked ? "metric" : "imperial";
       const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${units}&appid=${apiKey}&lang=pt_br`);
       if (!response.ok) {
